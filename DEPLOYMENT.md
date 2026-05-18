@@ -269,8 +269,8 @@ Back in your Oracle SSH terminal, start the bot inside the virtual display wrapp
 ```bash
 cd ~/click-aiesec-link-bot
 
-# Start under PM2 wrapper
-pm2 start "xvfb-run --auto-servernum --server-args='-screen 0 1280x1024x24' npm start" --name "aiesec-link-bot"
+# Start under PM2 wrapper using ecosystem config
+pm2 start ecosystem.config.js
 
 # Save PM2 state so it auto-restarts on reboot
 pm2 save
@@ -371,8 +371,8 @@ Back in your AWS SSH terminal, start the bot inside the virtual display wrapper:
 ```bash
 cd ~/click-aiesec-link-bot
 
-# Start under PM2 wrapper
-pm2 start "xvfb-run --auto-servernum --server-args='-screen 0 1280x1024x24' npm start" --name "aiesec-link-bot"
+# Start under PM2 wrapper using ecosystem config
+pm2 start ecosystem.config.js
 
 # Save PM2 state so it auto-restarts on reboot
 pm2 save
