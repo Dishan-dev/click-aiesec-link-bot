@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
+    "start:xvfb": "xvfb-run --auto-servernum --server-args='-screen 0 1280x1024x24' node src/index.js",
     "login": "node login.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

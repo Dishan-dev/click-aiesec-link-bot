@@ -2,8 +2,8 @@ module.exports = {
   apps: [
     {
       name: "aiesec-link-bot",
-      script: "start.sh",
-      interpreter: "/bin/bash",
+      script: "npm",
+      args: "run start:xvfb",
       env: {
         NODE_ENV: "production",
       }
