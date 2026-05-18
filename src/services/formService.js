@@ -28,7 +28,7 @@ const getBrowser = async () => {
 
         const launchOptions = {
             headless: false, // Must be false — Google blocks session cookies in headless mode
-            userDataDir: path.resolve(dataDir, 'chrome_session'),
+            userDataDir: path.resolve(__dirname, '../../chrome_session'),
             args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
         };
 
@@ -111,12 +111,14 @@ const submitToForm = async (data) => {
         await page.setViewport({ width: 1280, height: 900 });
 
         const fs = require('fs');
-        const dataDir = process.env.DATA_DIR || process.cwd();
-        const cookiesPath = path.resolve(dataDir, 'cookies.json');
+        const cookiesPath = path.resolve(__dirname, '../../cookies.json');
+        console.log(`  Checking for cookies at: ${cookiesPath}`);
         if (fs.existsSync(cookiesPath)) {
-            console.log('  Loading session cookies from cookies.json...');
+            console.log('  ✔ Loading session cookies from cookies.json...');
             const cookies = JSON.parse(fs.readFileSync(cookiesPath, 'utf8'));
             await page.setCookie(...cookies);
+        } else {
+            console.log('  ⚠️ cookies.json not found at ' + cookiesPath);
         }
 
         // Navigate to the blank form (no pre-filling — we'll fill everything interactively)
