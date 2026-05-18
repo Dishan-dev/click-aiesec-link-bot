@@ -1,0 +1,42 @@
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Sensitive Configuration & Credentials
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+*.json.key
+click-aiesec-bot-*.json
+
+# Authentication & Browser Sessions (CRITICAL TO IGNORE)
+auth_info_baileys/
+chrome_session/
+
+# SSH Private Keys (In case saved in project folder)
+*.pem
+*.key
+*.ppk
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# OS metadata
+.DS_Store
+Thumbs.db
+*.swp
+
+# Editor directories and files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
