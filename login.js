@@ -9,13 +9,22 @@ require('dotenv').config();
     console.log('Launching browser for login...');
     console.log('Please log in to your @aiesec.net account in the browser window that opens.');
     
+    const fs = require('fs');
     const dataDir = process.env.DATA_DIR || process.cwd();
-    const browser = await puppeteer.launch({
-        headless: false, // Make it visible so the user can interact
+    let executablePath = null;
+    if (fs.existsSync('/usr/bin/chromium-browser')) { executablePath = '/usr/bin/chromium-browser'; }
+    else if (fs.existsSync('/usr/bin/chromium')) { executablePath = '/usr/bin/chromium'; }
+    else if (fs.existsSync('/usr/bin/google-chrome')) { executablePath = '/usr/bin/google-chrome'; }
+
+    const launchOptions = {
+        headless: false,
         userDataDir: path.resolve(dataDir, 'chrome_session'),
-        channel: 'chrome', // Uses the locally installed Google Chrome to avoid download issues
         args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
-    });
+    };
+    if (executablePath) { launchOptions.executablePath = executablePath; }
+    else { launchOptions.channel = 'chrome'; }
+
+    const browser = await puppeteer.launch(launchOptions);
 
     const page = await browser.newPage();
     

@@ -14,13 +14,31 @@ let browserInstance = null;
 const getBrowser = async () => {
     if (!browserInstance) {
         console.log('Initializing browser instance...');
+        const fs = require('fs');
         const dataDir = process.env.DATA_DIR || process.cwd();
-        browserInstance = await puppeteer.launch({
+        
+        let executablePath = null;
+        if (fs.existsSync('/usr/bin/chromium-browser')) {
+            executablePath = '/usr/bin/chromium-browser';
+        } else if (fs.existsSync('/usr/bin/chromium')) {
+            executablePath = '/usr/bin/chromium';
+        } else if (fs.existsSync('/usr/bin/google-chrome')) {
+            executablePath = '/usr/bin/google-chrome';
+        }
+
+        const launchOptions = {
             headless: false, // Must be false — Google blocks session cookies in headless mode
             userDataDir: path.resolve(dataDir, 'chrome_session'),
-            channel: 'chrome',
             args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
-        });
+        };
+
+        if (executablePath) {
+            launchOptions.executablePath = executablePath;
+        } else {
+            launchOptions.channel = 'chrome'; // Fallback for Windows local development
+        }
+
+        browserInstance = await puppeteer.launch(launchOptions);
     }
     return browserInstance;
 };
