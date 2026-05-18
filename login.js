@@ -19,7 +19,13 @@ require('dotenv').config();
     const launchOptions = {
         headless: false,
         userDataDir: path.resolve(dataDir, 'chrome_session'),
-        args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
+        args: [
+            '--no-sandbox', 
+            '--disable-setuid-sandbox', 
+            '--disable-dev-shm-usage',
+            '--remote-debugging-port=9222',
+            '--remote-debugging-address=0.0.0.0'
+        ]
     };
     if (executablePath) { launchOptions.executablePath = executablePath; }
     else { launchOptions.channel = 'chrome'; }
