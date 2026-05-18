@@ -1,0 +1,71 @@
+[
+  {
+    "name": "__Secure-OSID",
+    "value": "g.a000-AjT0SRRrDsJqTQSULZ8buWFovXTKLuH_2ka9RGxBoQuWHVuYu4W3HxO5xK-7efN2aRFtAACgYKAasSARMSFQHGX2MinkrsSo-1ev9fpacX0lSVTxoVAUF8yKpCWI60zxuEoIfKybJe442g0076",
+    "domain": ".docs.google.com",
+    "path": "/",
+    "expires": 1813481774.250921,
+    "size": 166,
+    "httpOnly": true,
+    "secure": true,
+    "session": false,
+    "sameSite": "None",
+    "priority": "Medium",
+    "sourceScheme": "Secure"
+  },
+  {
+    "name": "COMPASS",
+    "value": "spreadsheet_forms=CjIACWuJV-hkhPYZt3oFyt9hdIAOGAng-eX1OJaGS3zKmcoKeMu2yZMCHws2bl4IV9rqtxDG363QBho0AAlriVeUyXQpC5EAV-hbQ_hXt-Gj568tssV07CLBM9BJOKBLlDcpOpRKK7ocA5Okc8felQ==",
+    "domain": ".docs.google.com",
+    "path": "/forms/d/e/1FAIpQLScy5fpQB5qJrzMQsXyguUkf2S8n5zAr1cgi6UuX6VB2UKaBQg",
+    "expires": 1779134406.940979,
+    "size": 177,
+    "httpOnly": true,
+    "secure": true,
+    "session": false,
+    "sameSite": "None",
+    "priority": "Low",
+    "sourceScheme": "Secure"
+  },
+  {
+    "name": "S",
+    "value": "spreadsheet_forms=Omra70QlMVkpJk0xXeWU512YSF_IFoZ8BJf5cDXELUg",
+    "domain": ".docs.google.com",
+    "path": "/forms/d/e/1FAIpQLScy5fpQB5qJrzMQsXyguUkf2S8n5zAr1cgi6UuX6VB2UKaBQg",
+    "expires": 1779134406.940762,
+    "size": 62,
+    "httpOnly": true,
+    "secure": true,
+    "session": false,
+    "sameSite": "None",
+    "priority": "Low",
+    "sourceScheme": "Secure"
+  },
+  {
+    "name": "OSID",
+    "value": "g.a000-AjT0SRRrDsJqTQSULZ8buWFovXTKLuH_2ka9RGxBoQuWHVuc1phcFDgB0fPW14nh41UcAACgYKAdASARMSFQHGX2Min15zpEWxqHwCTSXiCuAkfhoVAUF8yKqPzhP7sZkREOmzet8eaBY80076",
+    "domain": ".docs.google.com",
+    "path": "/",
+    "expires": 1813481774.250645,
+    "size": 157,
+    "httpOnly": true,
+    "secure": true,
+    "session": false,
+    "priority": "Medium",
+    "sourceScheme": "Secure"
+  },
+  {
+    "name": "NID",
+    "value": "531=VJoD1KfhJbmZqYUJ7WrataarQ2JDpMNf81PE0wSoDJjoVGd0RDZBnUrq9Yd6F76bRp8I_ubPO35tFH4PIgqVaC6chYsqCYORou8WgEqZmF4Cf0iAGunGb1lUJ7DHB76eVyb99JgZtx2rIySPIOsU7c18vuV9YN1Uff0rzkeKspKqPigb-ngdWtXMrHWjvb6EGJNQ_L4pgt5vCSCEY-tQ4aa-PxUz7mjG63YvYgI0IfAVn3W3g263XpZZIZZreRsPADpKKP0LFGvbq7NBGm5N-W1CsMTKmTRHGIgfbJmchM3-n7gOO5Ep3BiYpS5xoBl_9FlCuVCAnkO8PPAIwqaRKbP9CpT93A",
+    "domain": ".google.com",
+    "path": "/",
+    "expires": 1794942006.243934,
+    "size": 357,
+    "httpOnly": true,
+    "secure": true,
+    "session": false,
+    "sameSite": "None",
+    "priority": "Medium",
+    "sourceScheme": "Secure"
+  }
+]

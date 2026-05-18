@@ -110,6 +110,15 @@ const submitToForm = async (data) => {
         page = await browser.newPage();
         await page.setViewport({ width: 1280, height: 900 });
 
+        const fs = require('fs');
+        const dataDir = process.env.DATA_DIR || process.cwd();
+        const cookiesPath = path.resolve(dataDir, 'cookies.json');
+        if (fs.existsSync(cookiesPath)) {
+            console.log('  Loading session cookies from cookies.json...');
+            const cookies = JSON.parse(fs.readFileSync(cookiesPath, 'utf8'));
+            await page.setCookie(...cookies);
+        }
+
         // Navigate to the blank form (no pre-filling — we'll fill everything interactively)
         console.log('  Navigating to form...');
         await page.goto(formUrl, { waitUntil: 'networkidle2', timeout: 30000 });
