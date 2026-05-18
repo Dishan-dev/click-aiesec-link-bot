@@ -18,7 +18,7 @@ require('dotenv').config();
 
     const launchOptions = {
         headless: false,
-        userDataDir: path.resolve(dataDir, 'chrome_session'),
+        userDataDir: path.resolve(__dirname, 'chrome_session'),
         args: [
             '--no-sandbox', 
             '--disable-setuid-sandbox', 
