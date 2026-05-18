@@ -110,20 +110,22 @@ const appendToSheet = async (data) => {
         const sheets = google.sheets({ version: 'v4', auth });
 
         const spreadsheetId = process.env.SHEET_ID;
-        const sheetName = process.env.SHEET_NAME || 'General';
+        const defaultSheetName = process.env.SHEET_NAME || 'General';
 
         if (!spreadsheetId) {
             throw new Error('Google Sheet ID not configured in .env');
         }
 
+        const sheetNameToAppend = (data.entity && data.entity.toLowerCase() !== 'skip') ? data.entity.trim() : defaultSheetName;
+
         // Format: Timestamp, Created By, Entity, Function, Link Keyword, Original Link, Final Link
         const timestamp = new Date().toLocaleString('en-US', { 
-            timeZone: 'Asia/Colombo', // Matching user's local time if possible, or UTC
+            timeZone: 'Asia/Colombo', // Matching user's local time
             hour12: false 
         });
         
         const createdBy = process.env.GOOGLE_FORM_EMAIL || 'bot@aiesec.net';
-        const entity = ''; // Optional
+        const entity = data.entity || '';
         const func = data.function || '';
         const shortcut = data.shortcut || '';
         const originalLink = data.link || '';
@@ -131,18 +133,18 @@ const appendToSheet = async (data) => {
 
         const row = [timestamp, createdBy, entity, func, shortcut, originalLink, finalLink];
 
-        console.log(`Appending row to ${sheetName}:`, row);
+        console.log(`Appending row directly to Google Sheet "${sheetNameToAppend}":`, row);
 
         await sheets.spreadsheets.values.append({
             spreadsheetId,
-            range: `${sheetName}!A4:G`,
+            range: `${sheetNameToAppend}!A4:G`,
             valueInputOption: 'USER_ENTERED',
             requestBody: {
                 values: [row],
             },
         });
 
-        console.log('Successfully appended row to Google Sheet!');
+        console.log('✔ Successfully appended row to Google Sheet!');
         return true;
     } catch (error) {
         console.error('Error appending data to Google Sheets:', error);

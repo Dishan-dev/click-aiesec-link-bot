@@ -1,6 +1,5 @@
 const { extractUrl, sleep } = require('../utils/helpers');
-const { submitToForm } = require('../services/formService');
-const { findConvertedLink } = require('../services/sheetService');
+const { findConvertedLink, appendToSheet } = require('../services/sheetService');
 const { sendMessage } = require('../services/whatsappService');
 const { getUserState, setUserState, clearUserState } = require('./stateManager');
 const QUESTIONS = require('../config/questions');
@@ -135,11 +134,11 @@ const processFormSubmission = async (jid, stateKey, data, senderJid) => {
         const replyPrefix = senderJid ? `@${senderJid.split('@')[0]} ` : '';
         await sendMessage(jid, replyPrefix + "Processing your link... ⏳");
 
-        // 2. Submit URL and data directly to Google Form via Puppeteer
-        const formSubmitted = await submitToForm(data);
+        // 2. Append URL and data directly to Google Sheet via Service Account API
+        const formSubmitted = await appendToSheet(data);
         
         if (!formSubmitted) {
-            await sendMessage(jid, replyPrefix + "Sorry, I failed to submit your data to the Google Form. ✘");
+            await sendMessage(jid, replyPrefix + "Sorry, I failed to submit your data to the Google Sheet. ✘");
             clearUserState(stateKey);
             return;
         }
