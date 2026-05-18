@@ -69,7 +69,8 @@ const handleIncomingMessage = async (sock, msg) => {
             messageContent.startsWith("Process cancelled") ||
             messageContent.startsWith("Awesome!") ||
             messageContent.startsWith("Thanks!") ||
-            messageContent.startsWith("What is the Function")
+            messageContent.startsWith("What is the Function") ||
+            messageContent.startsWith("🌟 *Welcome to the AIESEC")
         ) {
             return;
         }
@@ -95,6 +96,21 @@ const handleIncomingMessage = async (sock, msg) => {
                     // No extra questions configured, submit immediately
                     await processFormSubmission(jid, stateKey, state.data, isGroup ? senderJid : null);
                 }
+            } else {
+                // User sent a greeting / help / menu / non-link text
+                const replyPrefix = isGroup ? `@${senderJid.split('@')[0]} ` : '';
+                const welcomeMessage = `🌟 *Welcome to the AIESEC Link Automation Bot!* 🌟\n\n` +
+                    `I am your AI assistant designed to instantly convert and track your AIESEC campaign links into our central database. 🚀\n\n` +
+                    `📋 *How to Use Me:*\n` +
+                    `1️⃣ *Send a Link:* Simply paste any Google Drive, Form, or Campaign URL here.\n` +
+                    `2️⃣ *Answer Prompts:* I will ask for your Entity (e.g., CS), Function (e.g., iGV), and Shortcut name.\n` +
+                    `3️⃣ *Get Your Link:* I will instantly log it into Google Sheets and reply with your converted tracking link!\n\n` +
+                    `🛠️ *Bot Commands:*\n` +
+                    `• *menu* / *help* - Show this welcome message\n` +
+                    `• *cancel* - Abort an active link submission session\n\n` +
+                    `💡 *Tip:* In group chats, make sure to *@mention* me so I know you're talking to me!\n\n` +
+                    `_Send me your first link whenever you're ready!_ ✨`;
+                await sendMessage(jid, replyPrefix + welcomeMessage);
             }
         } 
         // Step >= 0: Answering questions
