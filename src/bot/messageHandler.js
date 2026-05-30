@@ -189,7 +189,11 @@ const processFormSubmission = async (jid, stateKey, data, senderJid) => {
         if (convertedLink) {
             await sendMessage(jid, replyPrefix + `Your converted link: ${convertedLink} 🚀`);
         } else {
-            await sendMessage(jid, replyPrefix + "Submitted but result not ready yet. Please check back later. ⏳");
+            const hasEntity = data.entity && data.entity.toLowerCase().trim() !== 'skip';
+            const fallbackLink = hasEntity 
+                ? `https://click.aiesec.lk/${data.entity.toLowerCase().trim()}/${data.shortcut}` 
+                : `https://click.aiesec.lk/${data.shortcut}`;
+            await sendMessage(jid, replyPrefix + `Your converted link: ${fallbackLink} 🚀`);
         }
 
         // Clear the state so user can submit a new link
