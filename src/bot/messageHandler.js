@@ -164,8 +164,8 @@ const processFormSubmission = async (jid, stateKey, data, senderJid) => {
             clearUserState(stateKey);
             return;
         }
-
-        // 3. Polling Google Sheet for the converted link
+        // 3. Polling Google Sheet for the converted link (TEMPORARILY COMMENTED OUT)
+        /*
         let convertedLink = null;
         const maxRetries = 10;
         const retryDelay = 3000; // 3 seconds
@@ -184,17 +184,22 @@ const processFormSubmission = async (jid, stateKey, data, senderJid) => {
                 await sleep(retryDelay);
             }
         }
+        */
 
         // 4. Send final response
+        /*
         if (convertedLink) {
-            await sendMessage(jid, replyPrefix + `Your converted link: ${convertedLink} 🚀`);
+            await sendMessage(jid, replyPrefix + `Your converted link: ${convertedLink.toLowerCase()} 🚀`);
         } else {
+        */
             const hasEntity = data.entity && data.entity.toLowerCase().trim() !== 'skip';
             const fallbackLink = hasEntity 
-                ? `https://click.aiesec.lk/${data.entity.toLowerCase().trim()}/${data.shortcut}` 
-                : `https://click.aiesec.lk/${data.shortcut}`;
+                ? `https://click.aiesec.lk/${data.entity.toLowerCase().trim()}/${data.shortcut.toLowerCase().trim()}` 
+                : `https://click.aiesec.lk/${data.shortcut.toLowerCase().trim()}`;
             await sendMessage(jid, replyPrefix + `Your converted link: ${fallbackLink} 🚀`);
+        /*
         }
+        */
 
         // Clear the state so user can submit a new link
         clearUserState(stateKey);
